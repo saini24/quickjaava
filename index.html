@@ -9,35 +9,38 @@
             font-family: Arial, sans-serif;
             text-align: center;
             display: flex;
+            background-color: burlywood;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            position: relative;
         }
+        .content-container {
+            overflow-y: auto; /* Allow vertical scrolling */
+            height: 80vh; /* Set a height for the content area */
+            padding: 20px; /* Add padding */
+            box-sizing: border-box; /* Include padding in height calculation */
+        }
+        
         .navbar {
             width: 100%;
             display: flex;
-            justify-content: left;
+            justify-content: right;
             padding: 30px;
-            background: #333;
-            color: red;
+            background: red;
+            color: black;
             position: absolute;
             top: 0;
         }
+
         .navbar a {
-            color: red;
+            color: black;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 20px;
         }
-        .container {
-            margin-top: 50px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
+
         input {
             width: 95%;
             padding: 10px;
@@ -45,36 +48,132 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
         button {
             width: 100%;
             padding: 10px;
-            background: #28a745;
+            background: purple;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
+
         .error {
             color: red;
             font-size: 12px;
+        }
+
+        .circle-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 70%;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            object-fit: cover;
+            color: black;
+        }
+        .java-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 70%;
+            position: absolute;
+            left: 45%;
+            top: 50%;
+        }
+
+        marquee {
+            font-size: 2.5em;
+            color: darkblue;
+            margin: 0;
+            position: absolute;
+            top: 150px;
+            left: 100px;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 2.5em;
+            color: black;
+            margin: 0;
+            position: absolute;
+            left: 40%;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        h3 {
+            font-size: 2.5em;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 1px 1px 2px;
+            top: 10px;
+            left: 220px;
+            margin: 0;
+            position: absolute;
+            color: rgb(33, 30, 32);
+        }
+        h4 {
+            font-size: 2.5em;
+            color: black;
+            margin: 0;
+            position: absolute;
+            top: 40%;
+            left: 23%;
+        }
+        .logout-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        h6 {
+            font-size: 1.5em;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 1px 1px 2px;
+            top: 12%;
+            left: 32%;
+            margin: 0;
+            position: absolute;
+        }
+        
+        ul {
+            font-size: 1.5em;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 1px 1px 2px;
+            top: 18%;
+            left: 30%;
+            margin: 0;
+            position: absolute;
         }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="#" onclick="navigate('/')">Home</a>
+        <a href="#" onclick="navigate('home')">Home</a>
         <a href="#" onclick="navigate('about')">About Us</a>
         <a href="#" onclick="navigate('contact')">Contact Us</a>
         <a href="#" onclick="navigate('home')">Explore!</a>
     </div>
     
-    <div id="main-content" class="container">
-        <h2>Welcome User to My Website!</h2>
+    <div id="main-content" class="content-container">
+        <h1></h1>
+        <marquee behavior="scroll" direction="left">Learn Java in Just 90 Days!</marquee>
+        <h4>Want to learn java in 90 days! then Please Explore!</h4>
+        <h3>Quickjava</h3>
+        <img src="java1.png" alt="Profile" class="java-image">
+        <img src="saini.png" alt="Profile" class="circle-image">
     </div>
 
     <script>
         function navigate(page) {
             const content = document.getElementById('main-content');
+
             if (page === 'home') {
                 content.innerHTML = `
                     <h2>Login</h2>
@@ -82,45 +181,46 @@
                     <input type="password" id="login-password" placeholder="Password" required>
                     <button onclick="login()">Login</button>
                     <p>Don't have an account? <a href="#" onclick="navigate('signup')">Signup</a></p>
+                    <img src="saini.png" alt="Profile" class="circle-image">
                 `;
-            } else if (page === 'signup') {
-                content.innerHTML = `
-                    <h2>Signup</h2>
-                    <input type="text" id="signup-username" placeholder="Username" required>
-                    <input type="email" id="signup-email" placeholder="Email" required>
-                    <input type="password" id="signup-password" placeholder="Password" required>
-                    <p class="error" id="password-error"></p>
-                    <button onclick="signup()">Signup</button>
-                    <p>Already have an account? <a href="#" onclick="navigate('home')">Login</a></p>
-                `;
-
-                
-            } else if (page === 'welcome') {
-                content.innerHTML = `
-                    <h2> Learning Day 1!</h2>
-                    <ul>
-                        <li><a href="#" onclick="navigate('what-is-java')">1. What is Java?</a></li>
-                        <li><a href="#" onclick="navigate('what-is-jvm')">2. What is JVM?</a></li>
-                    </ul>
-                `;
-            } else if (page === 'what-is-java') {
-                content.innerHTML = `
-                    <h2>What is Java?</h2>
-                    <p>Java is a widely used, high-level, object-oriented programming language and software platform, known for its platform independence, meaning code can run on any device with a Java Virtual Machine (JVM).</p>
-                    <button onclick="navigate('welcome')">Back to Learning Day 1</button>
-                `;
-            } else if (page === 'what-is-jvm') {
-                content.innerHTML = `
-                    <h2>What is JVM?</h2>
-                    <p>The Java Virtual Machine (JVM) is a virtual machine that enables a computer to run Java programs. It is an abstract computing machine that enables a system to execute Java bytecode, making Java platform-independent.</p>
-                    <button onclick="navigate('welcome')">Back to Learning Day 1</button>
-                `;
-            } else if (page === 'about') {
-                content.innerHTML = `<h2>About Us</h2><p>We are good Java learners.</p>`;
-            } else if (page === 'contact') {
-                content.innerHTML = `<h2>Contact Us</h2><p>Email: akshaysaini2418@gmail.com</p>`;
+            } else {
+                if (page === 'signup') {
+                    content.innerHTML = `
+                        <h2>Signup</h2>
+                        <input type="text" id="signup-username" placeholder="Username" required>
+                        <input type="email" id="signup-email" placeholder="Email" required>
+                        <input type="password" id="signup-password" placeholder="Password" required>
+                        <p class="error" id="password-error"></p>
+                        <button onclick="signup()">Signup</button>
+                        <p>Already have an account? <a href="#" onclick="navigate('home')">Login</a></p>
+                    `;
+                } else if (page === 'welcome') {
+                    content.innerHTML = `
+                        <h6> Learning Day 1!</h6>
+                        <ul>
+                            <li><a href="#" onclick="navigate('what-is-java')">1. What is Java?</a></li>
+                            <li><a href="#" onclick="navigate('what-is-jvm')">2. What is JVM?</a></li>
+                        </ul>
+                        <button class="logout-button" onclick="logout()">Logout</button>
+                    `;
+                } else if (page === 'what-is-java') {
+                    content.innerHTML = `
+                        <h7>What is Java?</h7>
+                        <p>Java is a widely used, high-level, object-oriented programming language and software platform, known for its platform independence, meaning code can run on any device with a Java Virtual Machine (JVM).</p>
+                        <button onclick="navigate('welcome')">Back to Learning Day 1</button>
+                    `;
+                } else if (page === 'what-is-jvm') {
+                    content.innerHTML = `
+                        <h7>What is JVM?</h7>
+                        <p>The Java Virtual Machine (JVM) is a virtual machine that enables a computer to run Java programs. It is an abstract computing machine that enables a system to execute Java bytecode, making Java platform-independent.</p>
+                        <button onclick="navigate('welcome')">Back to Learning Day 1</button>
+                    `;
+                } else if (page === 'about') {
+                    content.innerHTML = `<h2>About Us</h2><p>We are good Java learners.</p>`;
+                } else if (page === 'contact') {
+                    content.innerHTML = `<h2>Contact Us</h2><p>Email: akshaysaini2418@gmail.com</p>`;
+                }
             }
-            
         }
         
         function signup() {
@@ -129,7 +229,13 @@
             const password = document.getElementById('signup-password').value;
             const passwordError = document.getElementById('password-error');
             
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
             const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%]).{6,}$/;
+            
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
             
             if (!passwordRegex.test(password)) {
                 passwordError.textContent = "Password must contain at least one uppercase letter, one special character (@,#,$,%) and one number.";
@@ -158,6 +264,9 @@
             } else {
                 alert('Wrong Details!');
             }
+        }
+        function logout() {
+            navigate('home');
         }
     </script>
 </body>
